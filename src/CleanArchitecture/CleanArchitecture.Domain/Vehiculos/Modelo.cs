@@ -1,5 +1,3 @@
-﻿
-namespace CleanArchitecture.Domain.Shared
-{
-    public record Modelo(string Value);
-}
+namespace CleanArchitecture.Domain.Vehiculos;
+
+public record Modelo(string Value);

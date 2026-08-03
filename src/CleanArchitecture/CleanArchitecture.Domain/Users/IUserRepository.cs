@@ -1,18 +1,12 @@
-﻿using CleanArchitecture.Domain.Abstractions;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+namespace CleanArchitecture.Domain.Users;
 
-namespace CleanArchitecture.Domain.Users
+public interface IUserRepository
 {
-    //Definicion de metosdos
-    public interface IUserRepository
-    {
-        Task<User> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
-        
-        // Crea una persistencia en la memory temporal dentro de entity framework core
-        void Add(User user);
-    }
+    // Los metodos GetByIdAsync y Add son metodos genericos y se implementan para todas las entidades en el Repository para que cualquier entidad lo pueda usar
+    Task<User?> GetByIdAsync(UserId id, CancellationToken cancellationToken = default);    
+    void Add(User user);
+    // El metodo GetByEmailAsync es un metodo personalizado para buscar un usuario por su email para la validacion de credenciales
+    Task<User?> GetByEmailAsync(Email email, CancellationToken cancellationToken = default);
+    Task<bool> IsUserExistsAsync(Email email, CancellationToken cancellationToken = default);
+
 }

@@ -1,17 +1,10 @@
-﻿using CleanArchitecture.Domain.Shared;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CleanArchitecture.Domain.Shared;
 
-namespace CleanArchitecture.Domain.Alquileres
-{
-    public record PrecioDetalle(
-        Moneda PrecioPorPeriodo,
-        Moneda Mantenimiento,
-        Moneda Accesorios,
-        Moneda PrecioTotal
-    );
-    
-}
+namespace CleanArchitecture.Domain.Alquileres;
+
+public record PrecioDetalle(
+    Moneda PrecioPorPeriodo,
+    Moneda Mantenimiento,
+    Moneda Accesorios,
+    Moneda PrecioTotal
+);
