@@ -1,0 +1,25 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# .NET build
+bin/
+obj/
+
+# Test results
+TestResults/
+*.trx
+
+# Docker / containers
+.containers/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Local configuration / secrets
+appsettings.Local.json

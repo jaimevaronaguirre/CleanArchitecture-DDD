@@ -1,36 +1,41 @@
-﻿using Serilog.Context;
+using Serilog.Context;
 
-namespace CleanArchitecture.Api.Middleware
+namespace CleanArchitecture.Api.Middleware;
+
+public class RequestContextLoggingMiddleware 
 {
-    public class RequestContextLoggingMiddleware
+
+    private const string CorrelationIdHeaderName = "X-Correlation-Id";
+
+    private readonly RequestDelegate _next;
+
+    public RequestContextLoggingMiddleware(RequestDelegate next)
     {
-        private const string CorrelationIdHeaderName = "X-Correlation-Id";
+        _next = next;
+    }
 
-        private readonly RequestDelegate _next;
+    public Task Invoke(HttpContext httpContext)
+    {
 
-        public RequestContextLoggingMiddleware(RequestDelegate next)
-        {
-            _next = next;
-        }
+    using(LogContext.PushProperty("CorrelationId", GetCorrelationId(httpContext)))
+    {
+        return _next(httpContext);
+    }
 
-        public Task Invoke(HttpContext httpContext)
-        {
-            using(LogContext.PushProperty("CorrelationId", GetCorrelatioId(httpContext)))
-            {
-                return _next(httpContext);
-            }
-        }
+        
+    }
 
-        private static string GetCorrelatioId(HttpContext httpContext)
-        {
-            httpContext.Request.Headers.TryGetValue(
-                CorrelationIdHeaderName,
-                out var correlationId
-            );
+    private static string GetCorrelationId(HttpContext httpContext)
+    {
+        httpContext.Request.Headers.TryGetValue(
+            CorrelationIdHeaderName, 
+            out var correlationId
+        );
 
-            return correlationId.FirstOrDefault() ?? httpContext.TraceIdentifier;
-
-        }
+        return correlationId.FirstOrDefault() ?? httpContext.TraceIdentifier;
 
     }
+
+
+
 }

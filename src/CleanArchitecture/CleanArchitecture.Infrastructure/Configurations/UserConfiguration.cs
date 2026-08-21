@@ -1,4 +1,3 @@
-using CleanArchitecture.Domain.Alquileres;
 using CleanArchitecture.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -31,16 +30,17 @@ internal sealed class UserConfiguration : IEntityTypeConfiguration<User>
         .HasMaxLength(400)
         .HasConversion(email => email!.Value , value => new Domain.Users.Email(value));
 
-        builder.Property(passwordHash => passwordHash.PasswordHash)
+        builder.Property(user => user.PasswordHash)
         .HasMaxLength(2000)
-        .HasConversion(password => password!.Value, value => new PasswordHash(value));
+        .HasConversion(password => password!.Value, value =>  new PasswordHash(value));
 
-
-
+        
         builder.HasIndex(user => user.Email).IsUnique();
 
         builder.HasMany(x => x.Roles)
-            .WithMany()
-            .UsingEntity<UserRole>();
+        .WithMany()
+        .UsingEntity<UserRole>();
+
+
     }
 }

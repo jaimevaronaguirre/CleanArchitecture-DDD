@@ -9,7 +9,7 @@ namespace CleanArchitecture.Application.Abstractions.Behaviors;
 public class LoggingBehavior<TRequest, TResponse>
 : IPipelineBehavior<TRequest, TResponse>
 where TRequest : IBaseRequest
-where TResponse : Result
+where TResponse: Result
 {
     private readonly ILogger<LoggingBehavior<TRequest, TResponse>> _logger;
 
@@ -31,19 +31,18 @@ where TResponse : Result
             _logger.LogInformation($"Ejecutando el request: {name}", name);
             var result = await next();
 
-            if (result.IsSuccess)
+            if(result.IsSuccess)
             {
-                _logger.LogInformation($"El request: {name} fue exitoso", name);
+                _logger.LogInformation($"El request: {name} fue exitoso" , name);
             }
-            else
-            {
+            else{
                 using(LogContext.PushProperty("Error", result.Error, true))
                 {
                     _logger.LogError("El Request {name} tiene errores", name);
                 }
             }
 
-            //_logger.LogInformation($"El request {name} se ejecuto exitosamente", name);
+            
 
             return result;
         }

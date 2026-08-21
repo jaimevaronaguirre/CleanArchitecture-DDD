@@ -1,5 +1,4 @@
 using CleanArchitecture.Domain.Abstractions;
-using CleanArchitecture.Domain.Alquileres;
 using CleanArchitecture.Domain.Shared;
 using CleanArchitecture.Domain.Vehiculos;
 using Microsoft.EntityFrameworkCore;
@@ -14,10 +13,10 @@ internal sealed class VehiculoConfiguration : IEntityTypeConfiguration<Vehiculo>
        builder.ToTable("vehiculos");
        builder.HasKey(vehiculo => vehiculo.Id);
 
-       builder.Property(vehiculo => vehiculo.Id)
-        .HasConversion(vehiculoId => vehiculoId!.Value, value => new VehiculoId(value));
+      builder.Property(vehiculo => vehiculo.Id)
+      .HasConversion(vehiculoId => vehiculoId!.Value, value => new VehiculoId(value));
 
-        builder.OwnsOne(vehiculo => vehiculo.Direccion);
+       builder.OwnsOne(vehiculo => vehiculo.Direccion);
 
        builder.Property(vehiculo => vehiculo.Modelo) 
         .HasMaxLength(200)

@@ -1,7 +1,6 @@
-﻿namespace CleanArchitecture.Domain.Reviews
+namespace CleanArchitecture.Domain.Reviews;
+
+public record ReviewId(Guid Value)
 {
-    public record ReviewId(Guid Value)
-    {
-        public static ReviewId New() => new(Guid.NewGuid());
-    }
+    public static ReviewId New() => new(Guid.NewGuid());
 }

@@ -23,9 +23,9 @@ services:
       - cleanarchitecturedb
     ports:
       - 80:5000
-
+  
   serilogseq:
-    container_name: serilogseg
+    container_name: serilogseq
     environment:
       - ACCEPT_EULA=Y
     ports:

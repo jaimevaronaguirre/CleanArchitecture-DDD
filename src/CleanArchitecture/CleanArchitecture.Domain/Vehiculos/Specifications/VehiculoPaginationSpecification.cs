@@ -1,34 +1,33 @@
-﻿using CleanArchitecture.Domain.Abstractions;
+using CleanArchitecture.Domain.Abstractions;
 
+namespace CleanArchitecture.Domain.Vehiculos.Specifications;
 
-namespace CleanArchitecture.Domain.Vehiculos.Specifications
+public class VehiculoPaginationSpecification : BaseSpecification<Vehiculo, VehiculoId>
 {
-    public class VehiculoPaginationSpecification : BaseSpecification<Vehiculo, VehiculoId>
+
+    public VehiculoPaginationSpecification(
+        string sort, 
+        int pageIndex,
+        int pageSize,
+        string search
+        ): base(
+            x => string.IsNullOrEmpty(search) || x.Modelo == new Modelo(search)
+        )
     {
-        public VehiculoPaginationSpecification(
-            string sort,
-            int pageIndex,
-            int pageSize,
-            string search
-            ): base(
-                x => string.IsNullOrEmpty(search) || x.Modelo == new Modelo(search)
-            )
-        {
-            ApplyPaging(pageSize * (pageSize - 1), pageSize);
+
+            ApplyPaging(  pageSize*(pageIndex-1), pageSize  );
+
             if(!string.IsNullOrEmpty(sort))
             {
-                switch (sort)
+                switch(sort)
                 {
-                    case "modeloAsc": AddOrderBy(p => p.Modelo!); break;
+                    case "modeloAsc": AddOrderBy(p => p.Modelo!);break;
                     case "modeloDesc": AddOrderByDescending(p => p.Modelo!);break;
                     default: AddOrderBy(p => p.FechaUltimaAlquiler!);break;
                 }
             }
-            else
-            {
-                AddOrderBy(p => p.FechaUltimaAlquiler!);
+            else{
+                AddOrderBy(p => p.FechaUltimaAlquiler!);               
             }
-
-        }
     }
 }

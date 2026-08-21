@@ -16,8 +16,6 @@ internal sealed class AlquilerRepository : Repository<Alquiler, AlquilerId>, IAl
     {
     }
 
-    
-
     public async Task<bool> IsOverlappingAsync(
         Vehiculo vehiculo, 
         DateRange duracion, 

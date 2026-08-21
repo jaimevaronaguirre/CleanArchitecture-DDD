@@ -1,7 +1,6 @@
 using CleanArchitecture.Domain.Abstractions;
 using CleanArchitecture.Domain.Alquileres.Events;
 using CleanArchitecture.Domain.Shared;
-using CleanArchitecture.Domain.Users;
 using CleanArchitecture.Domain.Vehiculos;
 
 namespace CleanArchitecture.Domain.Alquileres;
@@ -17,7 +16,7 @@ public sealed class Alquiler : Entity<AlquilerId>
     private  Alquiler(
         AlquilerId id,
         VehiculoId vehiculoId,
-        UserId userId,
+        Users.UserId userId,
         DateRange duracion,
         Moneda precioPorPeriodo,
         Moneda mantenimiento,
@@ -41,7 +40,7 @@ public sealed class Alquiler : Entity<AlquilerId>
 
     public VehiculoId? VehiculoId {get; private set;}
 
-    public UserId? UserId {get; private set;}
+    public Users.UserId? UserId {get; private set;}
     public Moneda? PrecioPorPeriodo {get; private set;}
     public Moneda? Mantenimiento {get; private set;}
     public Moneda? Accesorios {get; private set;}
@@ -61,7 +60,7 @@ public sealed class Alquiler : Entity<AlquilerId>
 
     public static Alquiler Reservar(
       Vehiculo vehiculo,
-      UserId userId,
+      Users.UserId userId,
       DateRange duracion,
       DateTime fechaCreacion,
       PrecioService precioService

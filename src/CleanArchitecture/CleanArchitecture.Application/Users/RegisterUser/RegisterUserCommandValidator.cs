@@ -1,17 +1,15 @@
-﻿using CleanArchitecture.Application.Common.Validation;
 using FluentValidation;
 
+namespace CleanArchitecture.Application.Users.RegisterUser;
 
-namespace CleanArchitecture.Application.Users.RegisterUser
+internal sealed class RegisterUserCommandValidator
+    : AbstractValidator<RegisterUserCommand>
 {
-    internal sealed class RegisterUserCommandValidator : AbstractValidator<RegisterUserCommand>
+    public RegisterUserCommandValidator()
     {
-        public RegisterUserCommandValidator()
-        {
-            RuleFor(c => c.Nombre).NotEmpty().RequiredName();
-            RuleFor(c => c.Apellido).NotEmpty().RequiredLastName();
-            RuleFor(c => c.Email).EmailAddress().InvalidEmail();
-            RuleFor(c => c.Password).NotEmpty().ShortPassword();
-        }
+        RuleFor(c => c.Nombre).NotEmpty().WithMessage("El nombre no puede ser nulo");
+        RuleFor(c => c.Apellidos).NotEmpty().WithMessage("Los apellidos no pueden ser nulos");
+        RuleFor(c => c.Email).EmailAddress();
+        RuleFor(c => c.Password).NotEmpty().MinimumLength(5);
     }
 }

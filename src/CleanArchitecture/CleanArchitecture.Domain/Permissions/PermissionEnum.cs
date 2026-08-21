@@ -1,10 +1,9 @@
-﻿
-namespace CleanArchitecture.Domain.Permissions
+namespace CleanArchitecture.Domain.Permissions;
+
+
+public enum PermissionEnum
 {
-    public enum PermissionEnum
-    {
-        ReadUser =1,
-        WhiteUser = 2,
-        UpdateUser = 3
-    }
+    ReadUser = 1,
+    WriteUser = 2,
+    UpdateUser = 3
 }

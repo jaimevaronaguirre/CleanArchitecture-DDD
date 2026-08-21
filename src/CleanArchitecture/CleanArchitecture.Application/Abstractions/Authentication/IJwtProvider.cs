@@ -1,9 +1,10 @@
-﻿using CleanArchitecture.Domain.Users;
+using CleanArchitecture.Domain.Users;
 
-namespace CleanArchitecture.Application.Abstractions.Authentication
+namespace CleanArchitecture.Application.Abstractions.Authentication;
+
+public interface IJwtProvider
 {
-    public interface IJwtProvider
-    {
-        Task<string> Generate(User user);
-    }
+
+    Task<string> Generate(User user);
+
 }

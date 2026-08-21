@@ -1,8 +1,6 @@
 using CleanArchitecture.Domain.Abstractions;
 using CleanArchitecture.Domain.Alquileres;
 using CleanArchitecture.Domain.Reviews.Events;
-using CleanArchitecture.Domain.Users;
-using CleanArchitecture.Domain.Vehiculos;
 
 namespace CleanArchitecture.Domain.Reviews;
 
@@ -13,9 +11,9 @@ public sealed class Review : Entity<ReviewId>
 
     private Review(
         ReviewId id,
-        VehiculoId vehiculoId,
+        Vehiculos.VehiculoId vehiculoId,
         AlquilerId alquilerId,
-        UserId userId,
+        Users.UserId userId,
         Rating rating,
         Comentario comentario,
         DateTime? fechaCreacion
@@ -29,9 +27,9 @@ public sealed class Review : Entity<ReviewId>
         FechaCreacion = fechaCreacion;
     }
     
-    public VehiculoId? VehiculoId {get; private set;}
+    public Vehiculos.VehiculoId? VehiculoId {get; private set;}
     public AlquilerId? AlquilerId {get;private set;}
-    public UserId? UserId {get;private set;}
+    public Users.UserId? UserId {get;private set;}
 
     public Rating? Rating {get; private set;}
 

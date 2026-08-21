@@ -16,10 +16,9 @@ public static class UserErrors
         "Las credenciales son incorrectas"
     );
 
-    public static Error AlreadyExists = new(
+    public static Error AlreadyExists = new (
         "User.AlreadyExists",
-        "El usuario que desea registrar ya existe en la base de datos"
+        "El usuario ya existe en la base de datos"
     );
-
 
 }

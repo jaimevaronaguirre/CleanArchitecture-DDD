@@ -1,7 +1,6 @@
-﻿namespace CleanArchitecture.Domain.Vehiculos
+namespace CleanArchitecture.Domain.Vehiculos;
+
+public record VehiculoId(Guid Value)
 {
-    public record VehiculoId(Guid Value)
-    {
-        public static VehiculoId New() => new(Guid.NewGuid());
-    }
+    public static VehiculoId New() => new(Guid.NewGuid());
 }

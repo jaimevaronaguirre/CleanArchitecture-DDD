@@ -1,9 +1,11 @@
+using CleanArchitecture.Application.Paginations;
 using CleanArchitecture.Domain.Users;
 using Microsoft.EntityFrameworkCore;
 
 namespace CleanArchitecture.Infrastructure.Repositories;
 
-internal sealed class UserRepository : Repository<User, UserId>, IUserRepository
+internal sealed class UserRepository 
+: Repository<User, UserId>, IUserRepository, IPaginationRepository
 {
     public UserRepository(ApplicationDbContext dbContext) : base(dbContext)
     {
@@ -11,15 +13,25 @@ internal sealed class UserRepository : Repository<User, UserId>, IUserRepository
 
     public async Task<User?> GetByEmailAsync(Email email, CancellationToken cancellationToken = default)
     {
-        return await DbContext.Set<User>()
-            .FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
+       return await DbContext.Set<User>()
+       .FirstOrDefaultAsync(x => x.Email == email, cancellationToken);
     }
 
-    public async Task<bool> IsUserExistsAsync(Email email, CancellationToken cancellationToken = default)
+    public async Task<bool> IsUserExists(
+        Email email, 
+        CancellationToken cancellationToken = default)
     {
-        // Valida si ya existe un usuario registrado con el correo electrónico especificado.
-        // AnyAsync retorna true si encuentra al menos una coincidencia.
         return await DbContext.Set<User>()
-            .AnyAsync(x => x.Email == email, cancellationToken);
+        .AnyAsync(x => x.Email == email);
     }
+
+    public override void Add(User user)
+    {
+        foreach(var role in user.Roles!)
+        {
+            DbContext.Attach(role);
+        }
+        DbContext.Add(user);
+    }
+
 }

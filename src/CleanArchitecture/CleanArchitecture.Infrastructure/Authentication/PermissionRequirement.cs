@@ -1,14 +1,16 @@
-﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
-namespace CleanArchitecture.Infrastructure.Authentication
+namespace CleanArchitecture.Infrastructure.Authentication;
+
+public class PermissionRequirement : IAuthorizationRequirement
 {
-    public class PermissionRequirement : IAuthorizationRequirement
+    public PermissionRequirement(string permission)
     {
-        public PermissionRequirement(string permission)
-        {
-            Permission = permission;
-        }
-
-        public string Permission { get; }
+        Permission = permission;
     }
+
+    public string Permission {get;}
+
+    
+
 }

@@ -40,6 +40,7 @@ internal sealed class ReservarAlquilerCommandHandler :
         CancellationToken cancellationToken
         )
     {
+
         var userId = new UserId(request.UserId);
         var user = await _userRepository.GetByIdAsync(userId, cancellationToken);
 
@@ -48,7 +49,7 @@ internal sealed class ReservarAlquilerCommandHandler :
             return Result.Failure<Guid>(UserErrors.NotFound);
         }
 
-        var vehiculoId = new VehiculoId(request.VehiculoId);
+        var vehiculoId=new VehiculoId(request.VehiculoId);
         var vehiculo = await _vehiculoRepository.GetByIdAsync(vehiculoId, cancellationToken);
         if (vehiculo is null)
         {
