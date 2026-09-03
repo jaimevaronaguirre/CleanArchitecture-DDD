@@ -1,5 +1,6 @@
 
 using Asp.Versioning;
+using CleanArchitecture.Application.Abstractions.Authentication;
 using CleanArchitecture.Application.Abstractions.Clock;
 using CleanArchitecture.Application.Abstractions.Data;
 using CleanArchitecture.Application.Abstractions.Email;
@@ -8,6 +9,7 @@ using CleanArchitecture.Domain.Abstractions;
 using CleanArchitecture.Domain.Alquileres;
 using CleanArchitecture.Domain.Users;
 using CleanArchitecture.Domain.Vehiculos;
+using CleanArchitecture.Infrastructure.Authentication;
 using CleanArchitecture.Infrastructure.Clock;
 using CleanArchitecture.Infrastructure.Data;
 using CleanArchitecture.Infrastructure.Outbox;
@@ -68,11 +70,14 @@ public static class DependencyInjection
 
         services.AddScoped<IUnitOfWork>(sp => sp.GetRequiredService<ApplicationDbContext>());
 
-services
-.AddSingleton<ISqlConnectionFactory>( _ => new SqlConnectionFactory(connectionString));
+        services
+        .AddSingleton<ISqlConnectionFactory>( _ => new SqlConnectionFactory(connectionString));
 
         SqlMapper.AddTypeHandler(new DateOnlyTypeHandler());
+
+        services.AddHttpContextAccessor();
+        services.AddScoped<IUserContext, UserContext>();
         return services;
-    }
+            }
 
 }

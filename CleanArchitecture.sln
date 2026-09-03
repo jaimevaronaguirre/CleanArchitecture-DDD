@@ -23,9 +23,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Api.Funct
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Domain.UnitTests", "test\CleanArchitecture\CleanArchitecture.Domain.UnitTests\CleanArchitecture.Domain.UnitTests.csproj", "{523767CC-C437-4EB6-A346-C91774277240}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Aplication.UnitTests", "test\CleanArchitecture\CleanArchitecture.Aplication.UnitTests\CleanArchitecture.Aplication.UnitTests.csproj", "{4C94A6D9-D453-4E88-BA1F-70DD0DBA8DB8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Application.UnitTests", "test\CleanArchitecture\CleanArchitecture.Aplication.UnitTests\CleanArchitecture.Application.UnitTests.csproj", "{4C94A6D9-D453-4E88-BA1F-70DD0DBA8DB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Aplication.IntegrateTests", "test\CleanArchitecture\CleanArchitecture.Aplication.IntegrateTests\CleanArchitecture.Aplication.IntegrateTests.csproj", "{B8012BB6-9B07-4E0E-953B-0462FDD44E4D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.Application.IntegrateTests", "test\CleanArchitecture\CleanArchitecture.Aplication.IntegrateTests\CleanArchitecture.Application.IntegrateTests.csproj", "{B8012BB6-9B07-4E0E-953B-0462FDD44E4D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CleanArchitecture.ArchitectureTests", "test\CleanArchitecture\CleanArchitecture.ArchitectureTests\CleanArchitecture.ArchitectureTests.csproj", "{E378F427-3083-47DF-B7A3-05E6888A163C}"
 EndProject
